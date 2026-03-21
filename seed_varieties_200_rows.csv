@@ -1,0 +1,201 @@
+Crop,Variety,Region,Season,Yield_t_ha,Duration_days,Disease_Resistance,Special_Trait
+watermelon,WatermelonVar1,Tamil Nadu,Rabi,25.13,103,Low,Pest resistant
+papaya,PapayaVar2,Gujarat,Zaid,16.01,270,High,Stable yield
+lentil,LentilVar3,Punjab,Zaid,7.59,309,Low,Pest resistant
+maize,MaizeVar4,Uttar Pradesh,Rabi,12.7,277,High,Early maturity
+maize,MaizeVar5,Andhra Pradesh,Rabi,33.5,259,High,High yield
+jute,JuteVar6,Himachal Pradesh,All,3.29,339,Medium,High yield
+jute,JuteVar7,Karnataka,Rabi,29.95,122,Low,High fruit quality
+coffee,CoffeeVar8,Uttar Pradesh,All,14.26,303,High,High yield
+coffee,CoffeeVar9,Telangana,Kharif,29.28,178,Low,Drought tolerant
+watermelon,WatermelonVar10,Telangana,Zaid,33.9,330,High,Early maturity
+jute,JuteVar11,Tamil Nadu,Kharif,11.88,337,Low,Heat tolerant
+papaya,PapayaVar12,Uttar Pradesh,Rabi,11.38,252,High,High fruit quality
+watermelon,WatermelonVar13,Tamil Nadu,Kharif,19.2,123,High,Export quality
+blackgram,BlackgramVar14,Himachal Pradesh,Zaid,24.43,231,Low,Heat tolerant
+grapes,GrapesVar15,Telangana,Zaid,23.84,294,Low,Early maturity
+blackgram,BlackgramVar16,Punjab,Zaid,36.89,338,Medium,Early maturity
+mango,MangoVar17,Tamil Nadu,Rabi,9.02,274,Medium,Drought tolerant
+mango,MangoVar18,Telangana,Kharif,30.86,143,Medium,High yield
+coffee,CoffeeVar19,Kerala,All,30.81,324,High,High productivity
+lentil,LentilVar20,Telangana,Rabi,21.29,104,High,Heat tolerant
+banana,BananaVar21,Telangana,All,3.9,69,Medium,High productivity
+coffee,CoffeeVar22,Tamil Nadu,Rabi,10.51,341,High,Disease resistant
+kidneybeans,KidneybeansVar23,Himachal Pradesh,Kharif,8.75,295,Low,High yield
+muskmelon,MuskmelonVar24,Madhya Pradesh,Zaid,5.26,111,Low,Heat tolerant
+rice,RiceVar25,Karnataka,Zaid,38.58,244,Low,Early maturity
+grapes,GrapesVar26,Andhra Pradesh,Zaid,23.82,335,Medium,High fruit quality
+maize,MaizeVar27,Uttar Pradesh,All,28.04,227,Medium,Pest resistant
+chickpea,ChickpeaVar28,Kerala,All,11.02,239,Low,High yield
+orange,OrangeVar29,Uttar Pradesh,Rabi,26.23,231,High,Heat tolerant
+grapes,GrapesVar30,Himachal Pradesh,All,12.26,327,High,Export quality
+papaya,PapayaVar31,Madhya Pradesh,All,13.8,256,Medium,Heat tolerant
+cotton,CottonVar32,Kerala,Kharif,23.8,94,Medium,High fruit quality
+lentil,LentilVar33,Telangana,All,31.2,98,Low,Disease resistant
+mango,MangoVar34,Rajasthan,Rabi,4.85,241,Medium,Heat tolerant
+coffee,CoffeeVar35,Andhra Pradesh,Rabi,27.64,150,Medium,Disease resistant
+papaya,PapayaVar36,Andhra Pradesh,Rabi,10.09,173,Low,Early maturity
+jute,JuteVar37,Kerala,Rabi,17.3,335,Low,Drought tolerant
+pigeonpeas,PigeonpeasVar38,Kerala,All,14.01,315,Medium,Drought tolerant
+rice,RiceVar39,Andhra Pradesh,Kharif,27.19,102,Medium,Export quality
+pomegranate,PomegranateVar40,Telangana,Rabi,15.07,90,Low,Heat tolerant
+coffee,CoffeeVar41,Karnataka,All,20.47,152,Medium,Heat tolerant
+kidneybeans,KidneybeansVar42,Madhya Pradesh,Kharif,12.93,108,High,High productivity
+rice,RiceVar43,Andhra Pradesh,Zaid,35.09,131,Low,Drought tolerant
+chickpea,ChickpeaVar44,Kerala,Kharif,13.32,304,Medium,Disease resistant
+coconut,CoconutVar45,Maharashtra,Rabi,25.82,178,Low,High yield
+jute,JuteVar46,Himachal Pradesh,All,37.68,113,Low,Heat tolerant
+coconut,CoconutVar47,Madhya Pradesh,Kharif,28.59,173,High,Stable yield
+mango,MangoVar48,Rajasthan,Zaid,29.09,63,High,High fruit quality
+banana,BananaVar49,Telangana,Zaid,27.39,182,High,Heat tolerant
+blackgram,BlackgramVar50,Himachal Pradesh,All,38.14,301,Medium,Stable yield
+maize,MaizeVar51,Punjab,All,33.94,356,Low,Early maturity
+papaya,PapayaVar52,Karnataka,Kharif,37.97,346,Medium,Pest resistant
+pomegranate,PomegranateVar53,Kerala,Rabi,1.63,117,High,Export quality
+lentil,LentilVar54,Kerala,Rabi,7.56,311,Low,High yield
+watermelon,WatermelonVar55,Kerala,Rabi,33.14,107,Low,Stable yield
+banana,BananaVar56,Punjab,Zaid,39.93,196,Low,High fruit quality
+banana,BananaVar57,Punjab,Zaid,2.65,271,High,Early maturity
+pigeonpeas,PigeonpeasVar58,Rajasthan,Zaid,31.53,106,High,Stable yield
+lentil,LentilVar59,Himachal Pradesh,Kharif,20.47,259,Low,Stable yield
+mango,MangoVar60,Uttar Pradesh,Rabi,29.02,182,Low,High yield
+maize,MaizeVar61,Rajasthan,Zaid,37.42,324,Medium,Export quality
+jute,JuteVar62,Madhya Pradesh,Zaid,36.56,169,Low,Drought tolerant
+mothbeans,MothbeansVar63,Andhra Pradesh,Kharif,21.62,288,Medium,Export quality
+coffee,CoffeeVar64,Punjab,All,2.0,191,High,Pest resistant
+blackgram,BlackgramVar65,Telangana,Kharif,37.51,202,Low,Disease resistant
+pigeonpeas,PigeonpeasVar66,Telangana,Kharif,29.99,161,High,High yield
+mothbeans,MothbeansVar67,Punjab,Rabi,1.84,79,Medium,High productivity
+muskmelon,MuskmelonVar68,Tamil Nadu,Zaid,9.95,107,High,High fruit quality
+mango,MangoVar69,Gujarat,Kharif,16.05,231,High,High productivity
+kidneybeans,KidneybeansVar70,Gujarat,All,8.98,105,High,Stable yield
+blackgram,BlackgramVar71,Maharashtra,All,20.82,220,Medium,Drought tolerant
+coconut,CoconutVar72,Tamil Nadu,All,5.3,81,Low,Drought tolerant
+lentil,LentilVar73,Kerala,Kharif,26.08,315,Medium,Disease resistant
+pigeonpeas,PigeonpeasVar74,Gujarat,Rabi,12.86,304,Medium,Drought tolerant
+mango,MangoVar75,Gujarat,Rabi,3.12,348,High,Stable yield
+banana,BananaVar76,Madhya Pradesh,Zaid,15.26,111,Low,High yield
+muskmelon,MuskmelonVar77,Kerala,All,38.87,205,Low,Early maturity
+muskmelon,MuskmelonVar78,Karnataka,All,38.12,365,Medium,Heat tolerant
+pomegranate,PomegranateVar79,Uttar Pradesh,Zaid,6.03,93,Medium,High fruit quality
+papaya,PapayaVar80,Punjab,Rabi,16.4,126,Medium,Export quality
+apple,AppleVar81,Karnataka,Kharif,22.68,65,Low,Heat tolerant
+blackgram,BlackgramVar82,Maharashtra,Kharif,31.93,155,Low,Early maturity
+blackgram,BlackgramVar83,Uttar Pradesh,Rabi,24.7,137,Low,Drought tolerant
+mungbean,MungbeanVar84,Himachal Pradesh,Kharif,32.14,284,Medium,High fruit quality
+cotton,CottonVar85,Telangana,Zaid,6.2,224,Medium,Pest resistant
+apple,AppleVar86,Maharashtra,All,5.71,162,High,Disease resistant
+kidneybeans,KidneybeansVar87,Himachal Pradesh,Kharif,2.53,76,Medium,Export quality
+coffee,CoffeeVar88,Andhra Pradesh,All,4.87,339,Low,High yield
+apple,AppleVar89,Maharashtra,Rabi,2.59,94,High,Pest resistant
+maize,MaizeVar90,Uttar Pradesh,Rabi,3.3,335,Low,High fruit quality
+lentil,LentilVar91,Uttar Pradesh,All,23.28,195,Medium,High yield
+rice,RiceVar92,Kerala,Zaid,15.33,220,Low,High productivity
+jute,JuteVar93,Kerala,All,16.74,314,Medium,Stable yield
+mango,MangoVar94,Karnataka,All,10.91,359,Medium,Disease resistant
+coconut,CoconutVar95,Kerala,Zaid,3.28,109,Medium,Stable yield
+muskmelon,MuskmelonVar96,Andhra Pradesh,All,5.39,364,High,Disease resistant
+rice,RiceVar97,Telangana,Rabi,4.56,65,Medium,Stable yield
+coffee,CoffeeVar98,Himachal Pradesh,Zaid,25.9,197,High,Export quality
+grapes,GrapesVar99,Punjab,All,19.4,338,Medium,Early maturity
+coconut,CoconutVar100,Himachal Pradesh,Zaid,31.34,214,High,High yield
+blackgram,BlackgramVar101,Maharashtra,Rabi,5.37,217,High,Stable yield
+blackgram,BlackgramVar102,Karnataka,All,8.24,341,Low,Drought tolerant
+muskmelon,MuskmelonVar103,Punjab,Rabi,8.97,295,High,Pest resistant
+kidneybeans,KidneybeansVar104,Punjab,Kharif,19.54,363,Medium,Stable yield
+coffee,CoffeeVar105,Andhra Pradesh,All,37.42,163,Medium,Early maturity
+blackgram,BlackgramVar106,Telangana,Rabi,10.8,313,High,Early maturity
+banana,BananaVar107,Rajasthan,Rabi,31.13,316,High,Pest resistant
+jute,JuteVar108,Andhra Pradesh,All,18.43,345,Medium,High yield
+pomegranate,PomegranateVar109,Punjab,Kharif,16.18,206,Medium,Disease resistant
+coconut,CoconutVar110,Telangana,Kharif,29.3,125,High,Stable yield
+apple,AppleVar111,Gujarat,Rabi,25.4,202,High,High productivity
+jute,JuteVar112,Maharashtra,All,6.66,115,Low,High fruit quality
+lentil,LentilVar113,Andhra Pradesh,All,15.49,88,High,Stable yield
+jute,JuteVar114,Gujarat,All,8.56,115,Medium,Pest resistant
+jute,JuteVar115,Telangana,All,28.96,80,Medium,Export quality
+mango,MangoVar116,Madhya Pradesh,All,9.88,339,High,Disease resistant
+muskmelon,MuskmelonVar117,Gujarat,Kharif,36.47,354,High,Early maturity
+rice,RiceVar118,Karnataka,Rabi,27.9,121,Low,High fruit quality
+kidneybeans,KidneybeansVar119,Gujarat,Zaid,36.75,163,Low,Pest resistant
+lentil,LentilVar120,Punjab,Rabi,39.35,217,High,High yield
+mothbeans,MothbeansVar121,Kerala,Zaid,5.91,310,Medium,Early maturity
+maize,MaizeVar122,Rajasthan,Zaid,8.41,68,Medium,Disease resistant
+cotton,CottonVar123,Rajasthan,Kharif,32.78,215,Low,Export quality
+watermelon,WatermelonVar124,Kerala,Rabi,24.92,343,High,High productivity
+mango,MangoVar125,Andhra Pradesh,Kharif,13.55,311,Medium,Heat tolerant
+orange,OrangeVar126,Telangana,Zaid,28.82,354,Medium,High productivity
+chickpea,ChickpeaVar127,Gujarat,Zaid,32.69,277,Low,Disease resistant
+muskmelon,MuskmelonVar128,Telangana,Kharif,27.83,267,Medium,High yield
+grapes,GrapesVar129,Madhya Pradesh,Kharif,28.0,258,Low,High productivity
+papaya,PapayaVar130,Himachal Pradesh,Zaid,30.79,231,Medium,Early maturity
+coconut,CoconutVar131,Andhra Pradesh,Zaid,16.47,297,High,Drought tolerant
+banana,BananaVar132,Tamil Nadu,Kharif,6.84,266,High,Pest resistant
+mungbean,MungbeanVar133,Andhra Pradesh,Zaid,37.47,214,Medium,High productivity
+banana,BananaVar134,Uttar Pradesh,Kharif,18.75,64,High,Heat tolerant
+pomegranate,PomegranateVar135,Madhya Pradesh,All,37.51,324,High,High yield
+mungbean,MungbeanVar136,Punjab,All,29.25,251,High,Export quality
+chickpea,ChickpeaVar137,Uttar Pradesh,Kharif,12.01,340,Medium,High yield
+chickpea,ChickpeaVar138,Uttar Pradesh,Kharif,24.59,265,Low,Export quality
+papaya,PapayaVar139,Himachal Pradesh,All,33.98,214,High,Drought tolerant
+chickpea,ChickpeaVar140,Kerala,Kharif,29.6,179,High,Disease resistant
+rice,RiceVar141,Rajasthan,Zaid,5.23,306,Low,Export quality
+cotton,CottonVar142,Madhya Pradesh,Rabi,16.42,181,Medium,High yield
+lentil,LentilVar143,Tamil Nadu,Zaid,32.66,313,Medium,Export quality
+pigeonpeas,PigeonpeasVar144,Rajasthan,Zaid,36.17,84,Low,Disease resistant
+mothbeans,MothbeansVar145,Rajasthan,Zaid,4.45,248,Low,Pest resistant
+maize,MaizeVar146,Punjab,Rabi,35.45,204,High,Stable yield
+pomegranate,PomegranateVar147,Gujarat,Zaid,5.67,253,Low,Stable yield
+maize,MaizeVar148,Kerala,Kharif,7.97,300,Medium,Disease resistant
+mango,MangoVar149,Madhya Pradesh,Kharif,10.03,212,High,Early maturity
+watermelon,WatermelonVar150,Uttar Pradesh,Rabi,26.08,257,High,Early maturity
+grapes,GrapesVar151,Punjab,Rabi,8.47,238,Medium,Export quality
+pigeonpeas,PigeonpeasVar152,Andhra Pradesh,All,38.18,105,Low,Drought tolerant
+papaya,PapayaVar153,Karnataka,Kharif,34.11,320,Medium,Disease resistant
+mungbean,MungbeanVar154,Tamil Nadu,Zaid,19.76,208,Low,Pest resistant
+chickpea,ChickpeaVar155,Gujarat,Kharif,36.32,141,Low,Early maturity
+orange,OrangeVar156,Andhra Pradesh,Rabi,35.23,153,High,High fruit quality
+banana,BananaVar157,Gujarat,Kharif,12.02,226,Low,Disease resistant
+coconut,CoconutVar158,Maharashtra,All,16.02,88,Medium,Stable yield
+maize,MaizeVar159,Madhya Pradesh,Rabi,16.21,298,High,High productivity
+maize,MaizeVar160,Tamil Nadu,Zaid,14.33,295,High,Pest resistant
+maize,MaizeVar161,Tamil Nadu,All,11.67,310,Medium,Drought tolerant
+pigeonpeas,PigeonpeasVar162,Madhya Pradesh,Zaid,16.57,203,Low,Drought tolerant
+coconut,CoconutVar163,Punjab,Kharif,17.03,168,High,High fruit quality
+grapes,GrapesVar164,Kerala,Zaid,14.13,73,High,Stable yield
+banana,BananaVar165,Tamil Nadu,All,19.84,88,Medium,Drought tolerant
+pigeonpeas,PigeonpeasVar166,Karnataka,Kharif,23.95,238,High,Drought tolerant
+blackgram,BlackgramVar167,Karnataka,Rabi,6.93,103,Medium,Export quality
+muskmelon,MuskmelonVar168,Punjab,Zaid,3.3,111,Low,Pest resistant
+papaya,PapayaVar169,Andhra Pradesh,Rabi,33.47,351,Medium,Drought tolerant
+chickpea,ChickpeaVar170,Kerala,Rabi,4.49,185,Medium,Heat tolerant
+kidneybeans,KidneybeansVar171,Telangana,All,37.22,260,Medium,High yield
+jute,JuteVar172,Madhya Pradesh,Rabi,27.41,341,Medium,Heat tolerant
+mothbeans,MothbeansVar173,Karnataka,Zaid,19.95,348,Medium,Export quality
+maize,MaizeVar174,Rajasthan,Rabi,15.43,142,Medium,Drought tolerant
+jute,JuteVar175,Telangana,Zaid,9.91,195,Low,Export quality
+blackgram,BlackgramVar176,Karnataka,Zaid,9.17,78,Low,Pest resistant
+muskmelon,MuskmelonVar177,Himachal Pradesh,Kharif,18.33,191,High,High productivity
+coconut,CoconutVar178,Rajasthan,Rabi,3.35,107,Low,High yield
+orange,OrangeVar179,Maharashtra,Kharif,10.7,347,Low,High productivity
+muskmelon,MuskmelonVar180,Gujarat,Kharif,35.3,275,High,Drought tolerant
+grapes,GrapesVar181,Gujarat,Kharif,27.69,272,Low,Export quality
+watermelon,WatermelonVar182,Tamil Nadu,Rabi,21.61,173,Medium,High yield
+orange,OrangeVar183,Rajasthan,Kharif,9.65,328,High,Drought tolerant
+orange,OrangeVar184,Tamil Nadu,Zaid,27.44,124,Low,High productivity
+watermelon,WatermelonVar185,Karnataka,All,17.5,122,Medium,Pest resistant
+mungbean,MungbeanVar186,Tamil Nadu,Rabi,1.79,124,Medium,High productivity
+muskmelon,MuskmelonVar187,Punjab,Rabi,27.34,292,High,Drought tolerant
+mango,MangoVar188,Telangana,All,27.3,90,High,Early maturity
+blackgram,BlackgramVar189,Karnataka,Kharif,37.83,319,Medium,Early maturity
+mungbean,MungbeanVar190,Gujarat,Zaid,15.42,332,Medium,Export quality
+watermelon,WatermelonVar191,Andhra Pradesh,Rabi,10.52,360,Low,High productivity
+lentil,LentilVar192,Maharashtra,Kharif,10.02,364,Medium,High fruit quality
+mungbean,MungbeanVar193,Punjab,Kharif,2.41,103,Medium,Stable yield
+apple,AppleVar194,Madhya Pradesh,Rabi,14.0,66,Medium,High productivity
+coconut,CoconutVar195,Maharashtra,All,24.42,326,Low,Disease resistant
+coffee,CoffeeVar196,Himachal Pradesh,Rabi,7.17,271,Medium,Export quality
+chickpea,ChickpeaVar197,Himachal Pradesh,Zaid,7.55,154,Low,Disease resistant
+apple,AppleVar198,Uttar Pradesh,Rabi,25.59,158,Medium,Disease resistant
+cotton,CottonVar199,Karnataka,Kharif,17.22,239,Low,High productivity
+cotton,CottonVar200,Gujarat,Zaid,32.97,283,Low,High yield
