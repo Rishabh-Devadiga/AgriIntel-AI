@@ -29,11 +29,15 @@ from pathlib import Path
 from PIL import Image
 import io
 from typing import Optional
+import sys
 
-# Import custom modules
-from llm_agent import generate_advice, is_ollama_available, generate_seed_advice, generate_field_insights, warm_up_model, OLLAMA_API_URL, MODEL_NAME
-from seed_agent import get_seed_recommendations, SUPPORTED_REGIONS
-from field_intelligence import (
+# Add src to path for module imports
+sys.path.insert(0, str(Path(__file__).parent / "src"))
+
+# Import custom modules from src/modules
+from modules.llm_agent import generate_advice, is_ollama_available, generate_seed_advice, generate_field_insights, warm_up_model, OLLAMA_API_URL, MODEL_NAME
+from modules.seed_agent import get_seed_recommendations, SUPPORTED_REGIONS
+from modules.field_intelligence import (
     analyze_vegetation_coverage,
     analyze_soil_moisture,
     calculate_field_health_score,
@@ -91,9 +95,9 @@ if not st.session_state.model_warmed_up and is_ollama_available():
 
 @st.cache_resource
 def load_model():
-    """Load the trained Random Forest model."""
+    """Load the trained Random Forest model from models/ directory."""
     try:
-        model_path = "random_forest_crop_model.pkl"
+        model_path = Path(__file__).parent / "models" / "random_forest_crop_model.pkl"
         if not os.path.exists(model_path):
             st.error(f"❌ Model file not found: {model_path}")
             st.stop()
@@ -105,9 +109,9 @@ def load_model():
 
 @st.cache_resource
 def load_encoders():
-    """Load the label encoders for categorical features."""
+    """Load the label encoders for categorical features from models/ directory."""
     try:
-        encoders_path = "label_encoders.pkl"
+        encoders_path = Path(__file__).parent / "models" / "label_encoders.pkl"
         if not os.path.exists(encoders_path):
             return {}
         return joblib.load(encoders_path)
@@ -117,9 +121,9 @@ def load_encoders():
 
 @st.cache_resource
 def load_feature_names():
-    """Load feature names used during model training."""
+    """Load feature names used during model training from models/ directory."""
     try:
-        features_path = "feature_names.pkl"
+        features_path = Path(__file__).parent / "models" / "feature_names.pkl"
         if not os.path.exists(features_path):
             return None
         features = joblib.load(features_path)

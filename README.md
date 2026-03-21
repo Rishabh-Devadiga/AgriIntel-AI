@@ -1,283 +1,244 @@
-# 🌾 AI Crop Recommendation System
+# 🌾 AgriIntel-AI Farm Intelligence System
 
-A production-ready web application that combines machine learning and local LLM integration to provide intelligent crop recommendations and farming advice.
+A production-ready agricultural AI system with three integrated modules for modern farming.
 
-## 🎯 Features
-
-- **🤖 ML-Powered Crop Prediction**: Random Forest model with 99.32% accuracy
-- **💬 AI Farming Advice**: Llama3 LLM provides personalized farming tips
-- **📊 Field Analysis**: Evaluates soil nutrients, climate, and weather conditions
-- **🌍 Multi-Crop Support**: Recommends from 22 major Indian crops
-- **👨‍🌾 Farmer-Friendly Interface**: Simple web interface built with Streamlit
-- **⚡ Local LLM**: Runs entirely on your machine via Ollama (no cloud dependency)
-
-## 📋 What's Included
+## 📁 Project Structure
 
 ```
-Crop LLM/
-├── app.py                              # Main Streamlit application
-├── llm_agent.py                        # LLM integration module (Ollama/Llama3)
-├── model_train.ipynb                   # ML model training notebook
-├── random_forest_crop_model.pkl        # Trained Random Forest model
-├── label_encoders.pkl                  # Categorical encoders
-├── feature_names.pkl                   # Feature names used in training
-├── Crop_recommendation_with_season.csv # Training dataset
-├── requirements.txt                    # Python dependencies
-└── README.md                           # This file
+AgriIntel-AI/
+├── src/                              # Source code package
+│   ├── __init__.py                  # Package initialization
+│   ├── modules/                     # Core AI modules
+│   │   ├── __init__.py             # Modules package
+│   │   ├── llm_agent.py            # LLM integration (Ollama)
+│   │   ├── seed_agent.py           # Seed intelligence
+│   │   └── field_intelligence.py   # Image-based field analysis
+│
+├── models/                          # Trained ML models
+│   ├── random_forest_crop_model.pkl       # Crop prediction model
+│   ├── label_encoders.pkl                 # Feature encoders
+│   └── feature_names.pkl                  # Model feature names
+│
+├── data/                            # Data files
+│   ├── raw/                        # Raw data
+│   │   ├── seed_varieties_200_rows.csv
+│   │   ├── Crop_recommendation.csv
+│   │   └── Crop_recommendation_with_season.csv
+│   └── processed/                  # Processed data (for future use)
+│
+├── notebooks/                       # Jupyter notebooks
+│   ├── model_train.ipynb           # Model training
+│   └── EDA.ipynb                   # Exploratory data analysis
+│
+├── docs/                           # Documentation
+│   ├── README.md                   # Original project README
+│   ├── QUICKSTART.md               # Quick start guide
+│   ├── USER_GUIDE.md               # User guide
+│   └── *.md                        # Other documentation
+│
+├── tests/                          # Test files
+│   ├── test_llm_*.py              # LLM tests
+│   ├── test_field_*.py            # Field intelligence tests
+│   └── test_seed_*.py             # Seed agent tests
+│
+├── scripts/                        # Utility scripts
+│   ├── check_llm_status.py        # LLM diagnostics
+│   ├── diagnose_ollama.py         # Ollama diagnostics
+│   └── compare_models.py          # Model comparison
+│
+├── .streamlit/                     # Streamlit configuration
+│   └── config.toml                # Streamlit settings
+│
+├── app.py                         # Main Streamlit application (entry point)
+├── requirements.txt               # Python dependencies
+├── .gitignore                     # Git ignore rules
+└── README.md                      # This file
 ```
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-
 - Python 3.9+
-- Ollama (for AI advice feature)
-- Virtual environment (recommended)
+- Ollama (for AI features) - [Download](https://ollama.ai)
 
-### Step 1: Set Up Python Environment
+### Setup
 
-```bash
-# Create virtual environment
-python -m venv .venv
+1. **Clone/Navigate to Project**
+   ```bash
+   cd AgriIntel-AI
+   ```
 
-# Activate it
-# On Windows:
-.venv\Scripts\Activate.ps1
-# On macOS/Linux:
-source .venv/bin/activate
-```
+2. **Create Virtual Environment**
+   ```bash
+   python -m venv .venv
+   .venv\Scripts\Activate.ps1  # Windows PowerShell
+   # or
+   source .venv/bin/activate   # macOS/Linux
+   ```
 
-### Step 2: Install Dependencies
+3. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```bash
-pip install -r requirements.txt
-```
-
-### Step 3: Set Up Ollama (for LLM features)
-
-**Option A: With AI Advice (Recommended)**
-
-1. Download and install Ollama: https://ollama.ai
-2. In a separate terminal, start Ollama:
+4. **Start Ollama (Optional - for AI features)**
    ```bash
    ollama serve
    ```
-3. In another terminal, download Llama3:
+   In another terminal:
    ```bash
-   ollama pull llama3
+   ollama pull phi  # or neural-chat, mistral, llama3
    ```
 
-**Option B: Without AI Advice (Basic Mode)**
+5. **Run the Application**
+   ```bash
+   streamlit run app.py
+   ```
 
-Skip the Ollama setup. The app will still work but won't generate farming advice.
+   The app will open at `http://localhost:8501`
 
-### Step 4: Run the Application
+## 📚 Modules
 
-```bash
-streamlit run app.py
-```
+### 1. Crop Recommendation with Seed Intelligence
+- **Location**: `src/modules/llm_agent.py` + `src/modules/seed_agent.py`
+- **Features**:
+  - ML-based crop prediction (99.32% accuracy)
+  - Seed variety recommendations
+  - LLM-powered cultivation advice
+  - Crop-specific farming tips
 
-Your application will open at: **http://localhost:8501**
+### 2. Field Intelligence
+- **Location**: `src/modules/field_intelligence.py`
+- **Features**:
+  - Image-based field analysis
+  - Vegetation coverage detection
+  - Soil moisture estimation
+  - Field health scoring
+  - AI-powered field insights
 
-## 📱 How to Use the Web App
-
-1. **Enter Soil Conditions**
-   - Nitrogen (N): 0-150 kg/ha
-   - Phosphorus (P): 0-150 kg/ha
-   - Potassium (K): 0-210 kg/ha
-
-2. **Enter Environmental Conditions**
-   - Temperature: 0-50°C
-   - Humidity: 0-100%
-   - Soil pH: 3.5-10.0
-   - Rainfall: 0-300 mm
-
-3. **Select Season**
-   - Kharif (Monsoon)
-   - Rabi (Winter)
-   - Transition (Spring/Summer)
-
-4. **Get Recommendation**
-   - Click "🎯 Get Crop Recommendation"
-   - View predicted crop
-   - Get AI-generated farming advice (if Ollama is running)
-
-## 🤖 AI Farming Advice Features
-
-When Ollama is running and connected, the app generates advice on:
-
-- **Why this crop is recommended** - Based on your field conditions
-- **Optimal farming practices** - Season-specific techniques
-- **Fertilizer recommendations** - Customized N, P, K advice
-- **Weather considerations** - Based on temperature and rainfall
-- **Expected yield tips** - Practical suggestions for better harvests
-- **Potential risks** - Challenges to watch for
+### 3. AI Insights Panel
+- **Location**: `app.py` (ask_ai_insight function)
+- **Features**:
+  - Chat-based farming Q&A
+  - Context-aware advice
+  - Agriculture-focused responses
+  - Chat history export
 
 ## 🔧 Configuration
 
-### Model Settings
+### Streamlit Config (.streamlit/config.toml)
+- Customizable theme colors
+- Logger level settings
+- Client toolbar configuration
 
-Edit `app.py` to change:
-- Model file path: `random_forest_crop_model.pkl`
-- Encoder file path: `label_encoders.pkl`
+### Models Directory (models/)
+- `random_forest_crop_model.pkl`: Trained Random Forest classifier
+- `label_encoders.pkl`: Categorical feature encoders
+- `feature_names.pkl`: Feature names for model input
 
-### LLM Settings
+### Data Directory (data/)
+- **raw/**: Original CSV datasets
+- **processed/**: Prepared data (for future pipelines)
 
-Edit `llm_agent.py` to change:
-- Ollama URL: `http://localhost:11434`
-- Model name: `llama3`
-- Temperature: `0.7` (0=deterministic, 1=creative)
+## 📊 Data Files
 
-## 📊 Model Details
+### Crop Recommendation Data
+- `Crop_recommendation.csv`: Crop recommendations by soil parameters
+- `Crop_recommendation_with_season.csv`: Season-aware recommendations
 
-- **Algorithm**: Random Forest Classifier
-- **Trees**: 100
-- **Max Depth**: 10
-- **Training Accuracy**: 98.12%
-- **Testing Accuracy**: 99.32%
-- **CV Score**: 99.26% (±0.58%)
-- **Data**: 2,200 samples from Indian agricultural dataset
+### Seed Data
+- `seed_varieties_200_rows.csv`: Seed varieties with yield, disease resistance, and traits
 
-## 🧪 Features Used
+## 🧪 Testing
 
-The model uses 8 features for prediction:
-1. **N** - Nitrogen content (kg/ha)
-2. **P** - Phosphorus content (kg/ha)
-3. **K** - Potassium content (kg/ha)
-4. **Temperature** (°C)
-5. **Humidity** (%)
-6. **pH** - Soil pH value
-7. **Rainfall** (mm)
-8. **Season** - Categorical (Kharif/Rabi/Transition)
-
-## 🌾 Crops Supported (22 types)
-
-Rice, Wheat, Maize, Chickpea, Kidneybeans, Pigeonpeas, Mothbeans, Mungbean, Blackgram, Lentil, Pomegranate, Banana, Mango, Grapes, Watermelon, Muskmelon, Apple, Orange, Papaya, Coconut, Cotton, Jute, Coffee
-
-## 🔌 Troubleshooting
-
-### Issue: Streamlit command not found
-**Solution**:
+Run tests from the tests/ directory:
 ```bash
-python -m streamlit run app.py
+python tests/test_field_intelligence.py
+python tests/test_llm_direct.py
+python tests/test_seed_agent.py
 ```
 
-### Issue: Model file not found
-**Solution**:
+## 📖 Documentation
+
+See `docs/` folder for:
+- `README.md` - Original project documentation
+- `QUICKSTART.md` - Quick setup guide
+- `USER_GUIDE.md` - Detailed user guide
+- `LLM_SETUP_GUIDE.md` - LLM configuration
+- `IMPLEMENTATION_SUMMARY.md` - Implementation details
+
+## ⚙️ Troubleshooting
+
+### Issue: Models not found
+**Solution**: Ensure model files are in `models/` directory. Run setup from Project Structure section.
+
+### Issue: LLM offline
+**Solution**: 
 ```bash
-# Ensure you're in the correct directory
-cd "path/to/Crop LLM"
-
-# Check if files exist
-ls *.pkl
+ollama serve  # Start Ollama service
+ollama pull phi  # Download model
 ```
 
-### Issue: LLM not generating advice
-**Solution**:
+### Issue: Module imports failing
+**Solution**: Ensure you're running from project root:
 ```bash
-# Check if Ollama is running
-curl http://localhost:11434/api/tags
-
-# Start Ollama if needed
-ollama serve
-
-# Ensure Llama3 is installed
-ollama pull llama3
+cd AgriIntel-AI
+streamlit run app.py
 ```
 
-### Issue: "Connection refused" error
-**Solution**:
-1. Make sure Ollama is running: `ollama serve`
-2. Check Ollama is accessible: `curl http://localhost:11434`
-3. Restart Ollama
-4. Refresh the Streamlit app
+### Issue: Seed data not found
+**Solution**: Verify `data/raw/seed_varieties_200_rows.csv` exists.
 
-## 📈 Future Enhancements
+## 🔄 Updating Imports
 
-Planned features for future versions:
-- 🦠 Crop disease detection and management
-- 🧪 Advanced fertilizer optimization algorithms
-- 🌤️ Real-time weather-based recommendations
-- 💬 Interactive farmer chatbot
-- 📊 Crop market analysis and pricing
-- 🎯 Yield prediction models
-- 🔄 Multi-season crop rotation planning
-
-## 🔒 Data Privacy
-
-- **No cloud connectivity**: Everything runs locally on your machine
-- **Model inference**: Uses only locally stored model files
-- **LLM processing**: Ollama runs locally, no data sent to external servers
-- **User inputs**: Not stored or logged
-
-## 📚 Technical Architecture
-
-```
-┌─────────────────┐
-│   Streamlit UI  │ (Web Interface for farmers)
-└────────┬────────┘
-         │
-    ┌────▼─────┐
-    │           │
-    ├─► ML Model ──► Random Forest (99.32% accuracy)
-    │           │
-    └───────────┘
-         │
-    ┌────▼─────────────────┐
-    │  LLM Integration      │
-    ├─► Ollama ──► Llama3   │
-    └─────────────────────────┘
+The application automatically adds `src/` to the Python path in `app.py`:
+```python
+sys.path.insert(0, str(Path(__file__).parent / "src"))
+from modules.llm_agent import ...
 ```
 
-## 📝 Code Structure
+If you create new modules, place them in `src/modules/` and import from there.
 
-### `app.py` - Main Application
-- Streamlit UI setup
-- Model loading and caching
-- Input collection
-- Prediction logic
-- LLM integration
-- Results display
+## 📋 Dependencies
 
-### `llm_agent.py` - LLM Module
-- Ollama API integration
-- Prompt engineering
-- Advice generation functions
-- Error handling
-- Ollama availability check
+See `requirements.txt` for complete list:
+- streamlit >= 1.28.0
+- pandas >= 3.0.1
+- scikit-learn >= 1.3.2
+- ollama >= 0.1.0
+- opencv-python >= 4.8.1
+- PIL/pillow >= 10.0.1
 
-### Model Training
-- See `model_train.ipynb` for full training pipeline
-- Includes data preprocessing, feature engineering, model evaluation
-- Cross-validation and feature importance analysis
+## 🎯 Key Features
 
-## 🤝 Contributing
+✅ Clean, organized file structure  
+✅ Modular code architecture  
+✅ Easy to extend with new models  
+✅ Production-ready Streamlit app  
+✅ Comprehensive documentation  
+✅ Local LLM integration (privacy-first)  
+✅ Image-based field analysis  
+✅ Advanced seed recommendations  
 
-To extend the system:
+## 🔐 Privacy
 
-1. **Add new models**: Train additional models and save as `.pkl` files
-2. **Add new features**: Extend input fields in `app.py` and retrain model
-3. **Enhance LLM**: Create new functions in `llm_agent.py` for additional advice
-4. **Improve UI**: Customize Streamlit components in `app.py`
+All processing happens locally:
+- No data sent to external servers
+- Optional Ollama runs locally
+- Full control over your data
 
-## 📞 Support
+## 📝 License
 
-For issues or questions:
-1. Check the troubleshooting section above
-2. Verify all files are in the correct directory
-3. Ensure all dependencies are installed: `pip install -r requirements.txt`
-4. Check Ollama is running for LLM features: `ollama serve`
+See documentation in docs/ folder.
 
-## 📄 License
+## 👨‍💼 Support
 
-This project is provided as-is for agricultural AI research and development.
-
-## 👨‍💼 Built By
-
-Agricultural AI Solutions | 2026
+For issues or questions, refer to:
+1. Documentation in `docs/` folder
+2. Script help files in `scripts/`
+3. Test files in `tests/` for usage examples
 
 ---
 
-**Happy Farming! 🌾**
-
-Powered by Random Forest × Llama3 × Streamlit
+**Last Updated**: March 2026  
+**Version**: 1.0.0
