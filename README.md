@@ -2,6 +2,8 @@
 
 An intelligent agricultural decision-support platform combining machine learning, computer vision, and LLM-powered advice for modern farming.
 
+## Ngrok Deployed app link - https://alexia-incogitable-betsy.ngrok-free.dev/
+
 ## 🎯 How It Works
 
 The app has **three integrated modules**:
