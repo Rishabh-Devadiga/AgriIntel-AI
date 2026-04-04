@@ -730,40 +730,7 @@ def main():
     with st.sidebar:
         st.title("🌾 AI Farm Intelligence")
         st.markdown("---")
-        
-        # LLM Status with Model Info - Fresh check (no cache)
-        ollama_status = is_ollama_available()
-        
-        if ollama_status:
-            st.success("✅ LLM Ready")
-            # Show which model is being used
-            st.caption(f"📊 Model: `{MODEL_NAME}`")
-            model_info = {
-                "neural-chat": "2.0 GB",
-                "phi": "2.5 GB", 
-                "phi3": "2.5 GB",
-                "mistral": "4.0 GB",
-                "llama3": "4.6 GB"
-            }
-            if MODEL_NAME in model_info:
-                st.caption(f"💾 RAM: {model_info[MODEL_NAME]}")
-            st.caption("✨ AI insights enabled")
-        else:
-            st.warning("⚠️ LLM Offline")
-            st.caption("Using offline advice mode")
-            st.caption("Run: ollama serve")
-        
-        st.markdown("---")
-        
-        # Developer tools
-        with st.expander("🔧 Debug Info"):
-            st.write(f"LLM Available: {ollama_status}")
-            st.write(f"Model: {MODEL_NAME}")
-            if st.button("🔄 Refresh LLM Status"):
-                st.rerun()
-        
-        st.markdown("---")
-        
+
         # Navigation Menu
         selected_page = st.radio(
             "📌 Select Module:",
@@ -774,34 +741,108 @@ def main():
             ],
             label_visibility="collapsed"
         )
-        
+
         st.markdown("---")
-        
+
+        # LLM Status with Model Info - Fresh check (no cache)
+        ollama_status = is_ollama_available()
+
+        if ollama_status:
+            st.success("LLM Ready")
+            # Show which model is being used
+            st.caption(f"Model: `{MODEL_NAME}`")
+            model_info = {
+                "neural-chat": "2.0 GB",
+                "phi": "2.5 GB",
+                "phi3": "2.5 GB",
+                "mistral": "4.0 GB",
+                "llama3": "4.6 GB"
+            }
+            if MODEL_NAME in model_info:
+                st.caption(f"RAM: {model_info[MODEL_NAME]}")
+            st.caption("AI insights enabled")
+        else:
+            st.warning("⚠️ LLM Offline")
+            st.caption("Using offline advice mode")
+            st.caption("Run: ollama serve")
+
+        st.markdown("---")
+
+        # Dark mode toggle
+        if "dark_mode" not in st.session_state:
+            st.session_state.dark_mode = False
+
+        st.session_state.dark_mode = st.toggle(
+            "Dark mode",
+            value=st.session_state.dark_mode
+        )
+
+        st.markdown("---")
+
+        # Developer tools
+        with st.expander("🔧 Debug Info"):
+            st.write(f"LLM Available: {ollama_status}")
+            st.write(f"Model: {MODEL_NAME}")
+            if st.button("🔄 Refresh LLM Status"):
+                st.rerun()
+
+        st.markdown("---")
+
         # Info Section
         with st.expander("ℹ️ About This App"):
             st.markdown("""
             ### AI Farm Intelligence System
-            
+
             Three integrated modules for modern farming:
-            
+
             **Module 1: Crop Recommendation**
             - ML-based crop prediction
             - Seed variety recommendations
             - AI cultivation advice
-            
+
             **Module 2: Field Intelligence**
             - Image-based field analysis
             - Vegetation coverage detection
             - Soil moisture estimation
             - Field health scoring
-            
+
             **Module 3: AI Insights Panel**
             - Chat-based farming guidance
             - Ask agriculture questions
             - Get expert AI responses
-            
+
             All powered by AI and machine learning!
             """)
+
+    if st.session_state.get("dark_mode"):
+        st.markdown("""
+            <style>
+                .stApp {
+                    background-color: #0f1115;
+                    color: #ffffff;
+                }
+                section[data-testid="stSidebar"] {
+                    background-color: #141823;
+                }
+                .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6,
+                .stApp p, .stApp span, .stApp label, .stApp div,
+                .stMarkdown, .stText, .stCaption, .stHeader, .stSubheader, .stTitle {
+                    color: #ffffff;
+                }
+                .stButton>button, .stTextInput>div>div>input, .stTextArea>div>div>textarea,
+                .stSelectbox>div>div>div, .stSlider>div>div>div {
+                    background-color: #1b2030;
+                    color: #ffffff;
+                    border-color: #2a3145;
+                }
+                .stDataFrame, .stTable, .stMetric {
+                    background-color: #1b2030;
+                }
+                hr {
+                    border-color: #2a3145;
+                }
+            </style>
+        """, unsafe_allow_html=True)
     
     # Display selected page
     if selected_page == "Crop Recommendation with Seed Intelligence":
