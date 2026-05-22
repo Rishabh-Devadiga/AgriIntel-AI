@@ -9,6 +9,16 @@ MODEL_ID = "AI71ai/Llama-agrillm-3.3-70B:featherless-ai"
 
 TOKEN_ENV_NAMES = ("HF_TOKEN", "HF_token", "hf_token")
 
+def _get_streamlit_secret(name: str) -> str | None:
+    """Try to get token from Streamlit secrets (for cloud deployments)."""
+    try:
+        import streamlit as st
+        if hasattr(st, 'secrets') and name in st.secrets:
+            return st.secrets[name]
+    except:
+        pass
+    return None
+
 def _get_windows_user_env(name: str) -> str | None:
     """Read a user-level Windows environment variable without relying on process inheritance."""
     if sys.platform != "win32":
@@ -26,11 +36,19 @@ def _get_windows_user_env(name: str) -> str | None:
 def _get_hf_token() -> str:
     token_candidates = []
 
+    # First, check Streamlit secrets (priority for cloud deployments)
+    for name in TOKEN_ENV_NAMES:
+        value = _get_streamlit_secret(name)
+        if value:
+            token_candidates.append((f"streamlit_secret:{name}", value.strip()))
+
+    # Then check process environment variables
     for name in TOKEN_ENV_NAMES:
         value = os.environ.get(name)
         if value:
             token_candidates.append((f"process:{name}", value.strip()))
 
+    # Finally check Windows registry (local development only)
     for name in TOKEN_ENV_NAMES:
         value = _get_windows_user_env(name)
         if value:
@@ -78,7 +96,11 @@ def _format_agri_llm_error(error: Exception) -> str:
             )
 
         if "hf_token" in message_lower or "keyerror" in message_lower:
-            return "AgriLLM is not configured. Please set the HF_TOKEN environment variable and restart the app."
+            return (
+                "AgriLLM is not configured. "
+                "For Streamlit Cloud: Set HF_TOKEN in app settings > Secrets. "
+                "For local development: Set HF_TOKEN environment variable and restart the app."
+            )
 
         return (
             "AgriLLM is currently unreachable. Please check your internet connection "
