@@ -1,4 +1,5 @@
 import os
+import sys
 
 from huggingface_hub import InferenceClient
 
@@ -6,10 +7,47 @@ from huggingface_hub import InferenceClient
 # We explicitly target the fine-tuned agricultural model/provider.
 MODEL_ID = "AI71ai/Llama-agrillm-3.3-70B:featherless-ai"
 
+TOKEN_ENV_NAMES = ("HF_TOKEN", "HF_token", "hf_token")
+
+def _get_windows_user_env(name: str) -> str | None:
+    """Read a user-level Windows environment variable without relying on process inheritance."""
+    if sys.platform != "win32":
+        return None
+
+    try:
+        import winreg
+
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Environment") as key:
+            value, _ = winreg.QueryValueEx(key, name)
+            return value
+    except OSError:
+        return None
+
 def _get_hf_token() -> str:
-    token = os.environ.get("HF_TOKEN") or os.environ.get("HF_token") or os.environ.get("hf_token")
-    if not token:
+    token_candidates = []
+
+    for name in TOKEN_ENV_NAMES:
+        value = os.environ.get(name)
+        if value:
+            token_candidates.append((f"process:{name}", value.strip()))
+
+    for name in TOKEN_ENV_NAMES:
+        value = _get_windows_user_env(name)
+        if value:
+            token_candidates.append((f"user:{name}", value.strip()))
+
+    unique_tokens = {value for _, value in token_candidates if value}
+    if not unique_tokens:
         raise RuntimeError("HF_TOKEN is not set")
+
+    if len(unique_tokens) > 1:
+        sources = ", ".join(source for source, _ in token_candidates)
+        raise RuntimeError(
+            "Multiple Hugging Face token environment variables are set with different values. "
+            f"Clear the old token variables and keep only HF_TOKEN. Sources: {sources}"
+        )
+
+    token = unique_tokens.pop()
     return token
 
 def _format_agri_llm_error(error: Exception) -> str:
@@ -23,6 +61,7 @@ def _format_agri_llm_error(error: Exception) -> str:
             "hf_token",
             "keyerror",
             "is not set",
+            "multiple hugging face token",
             "failed to resolve",
             "nameresolutionerror",
             "getaddrinfo failed",
@@ -32,6 +71,12 @@ def _format_agri_llm_error(error: Exception) -> str:
             "timeout",
         )
     ):
+        if "multiple hugging face token" in message_lower:
+            return (
+                "AgriLLM found multiple different Hugging Face tokens in the environment. "
+                "Clear HF_TOKEN, HF_token, and hf_token, then set only HF_TOKEN to the new token."
+            )
+
         if "hf_token" in message_lower or "keyerror" in message_lower:
             return "AgriLLM is not configured. Please set the HF_TOKEN environment variable and restart the app."
 
