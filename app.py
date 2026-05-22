@@ -35,7 +35,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 # Import custom modules from src/modules
-from modules.llm_agent import generate_advice, is_ollama_available, generate_seed_advice, generate_field_insights, warm_up_model, OLLAMA_API_URL, MODEL_NAME
+from modules.llm_agent import generate_advice, is_ollama_available, generate_seed_advice, generate_field_insights, warm_up_model, MODEL_NAME
 from modules.seed_agent import get_seed_recommendations, SUPPORTED_REGIONS
 from modules.field_intelligence import (
     analyze_vegetation_coverage,
@@ -43,8 +43,7 @@ from modules.field_intelligence import (
     calculate_field_health_score,
     generate_field_report
 )
-
-import requests
+from agri_bot import ask_agriculture_expert
 
 
 # ============================================================
@@ -151,7 +150,7 @@ def ask_ai_insight(
     seed_name: Optional[str] = None
 ) -> str:
     """
-    Query the local LLM model via Ollama API to get agricultural insights.
+    Query the AgriLLM model via the Hugging Face Inference API.
     
     Optimized prompt design ensures:
     - Focused, agriculture-only responses
@@ -203,34 +202,11 @@ Farmer Question:
 
 Answer:"""
         
-        # Optimized payload for focused, concise responses
-        payload = {
-            "model": MODEL_NAME,
-            "prompt": prompt,
-            "stream": False,
-            "temperature": 0.3,  # Reduced from 0.5: less randomness, more focused
-            "num_predict": 80     # Reduced from 150: prevents long irrelevant text
-        }
-        
-        # Call the Ollama API with extended timeout for reliability
-        response = requests.post(OLLAMA_API_URL, json=payload, timeout=300)
-        
-        if response.status_code == 200:
-            result = response.json()
-            ai_response = result.get("response", "").strip()
-            
-            # Clean up response - remove common suffixes that models add
-            ai_response = ai_response.split("Question:")[0].strip()
-            ai_response = ai_response.split("Follow-up")[0].strip()
-            
-            return ai_response if ai_response else "Sorry, I couldn't generate a response. Please try again."
-        else:
-            return f"⚠️ Error: Unable to connect to AI service (Status: {response.status_code}). Make sure Ollama is running and the model '{MODEL_NAME}' is downloaded."
-    
-    except requests.exceptions.Timeout:
-        return "⚠️ Request timed out. The AI service is taking too long. Please try again."
-    except requests.exceptions.ConnectionError:
-        return "⚠️ Cannot connect to AI service. Please ensure Ollama is running. Run: ollama serve"
+        ai_response = ask_agriculture_expert(prompt).strip()
+        ai_response = ai_response.split("Question:")[0].strip()
+        ai_response = ai_response.split("Follow-up")[0].strip()
+        return ai_response if ai_response else "Sorry, I couldn't generate a response. Please try again."
+
     except Exception as e:
         return f"⚠️ Error: {str(e)}"
 
