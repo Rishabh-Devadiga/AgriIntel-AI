@@ -49,9 +49,9 @@ streamlit run app.py
 
 Opens at `http://localhost:8501`
 
-## 🌐 Deploy Online
+## 🌐 Online Deployment
 
-Use ngrok for instant public deployment:
+Used ngrok for instant public deployment:
 
 ```bash
 # Terminal 1
@@ -60,8 +60,6 @@ streamlit run app.py
 # Terminal 2 (after creating free ngrok account)
 ngrok http 8501
 ```
-
-Get a public URL instantly to share your app!
 
 ## 📚 Tech Stack
 
