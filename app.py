@@ -720,29 +720,8 @@ def main():
 
         st.markdown("---")
 
-        # LLM Status with Model Info - Fresh check (no cache)
+        # LLM Status check (for debug info)
         ollama_status = is_ollama_available()
-
-        if ollama_status:
-            st.success("LLM Ready")
-            # Show which model is being used
-            st.caption(f"Model: `{MODEL_NAME}`")
-            model_info = {
-                "neural-chat": "2.0 GB",
-                "phi": "2.5 GB",
-                "phi3": "2.5 GB",
-                "mistral": "4.0 GB",
-                "llama3": "4.6 GB"
-            }
-            if MODEL_NAME in model_info:
-                st.caption(f"RAM: {model_info[MODEL_NAME]}")
-            st.caption("AI insights enabled")
-        else:
-            st.warning("⚠️ LLM Offline")
-            st.caption("Using offline advice mode")
-            st.caption("Run: ollama serve")
-
-        st.markdown("---")
 
         # Dark mode toggle
         if "dark_mode" not in st.session_state:
