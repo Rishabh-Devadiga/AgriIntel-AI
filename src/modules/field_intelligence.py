@@ -9,7 +9,6 @@ Author: ML Pipeline
 Date: 2026
 """
 
-import cv2
 import numpy as np
 import streamlit as st
 from PIL import Image
@@ -41,16 +40,16 @@ def analyze_vegetation_coverage(image_array: np.ndarray) -> Tuple[float, str]:
         vegetation_level_label: "Healthy", "Moderate", or "Low"
     """
     try:
-        # Convert to HSV for better green detection
-        hsv_image = cv2.cvtColor(image_array, cv2.COLOR_RGB2HSV)
-        
-        # Define range for green color in HSV
-        # Green hue range: 35-85 (approximately)
-        lower_green = np.array([35, 40, 40])
-        upper_green = np.array([85, 255, 255])
-        
-        # Create mask for green pixels
-        green_mask = cv2.inRange(hsv_image, lower_green, upper_green)
+        # Detect vegetation using a simple RGB heuristic so OpenCV is not required.
+        red = image_array[:, :, 0].astype(np.int16)
+        green = image_array[:, :, 1].astype(np.int16)
+        blue = image_array[:, :, 2].astype(np.int16)
+
+        green_mask = (
+            (green > red + 12)
+            & (green > blue + 8)
+            & (green > 40)
+        )
         
         # Calculate percentage of green pixels
         total_pixels = green_mask.size
@@ -95,8 +94,8 @@ def analyze_soil_moisture(image_array: np.ndarray) -> Tuple[float, str]:
         moisture_level_label: "High", "Medium", or "Low"
     """
     try:
-        # Convert to grayscale
-        gray_image = cv2.cvtColor(image_array, cv2.COLOR_RGB2GRAY)
+        # Convert to grayscale without OpenCV.
+        gray_image = np.mean(image_array.astype(np.float32), axis=2)
         
         # Calculate average brightness (0-255 scale)
         avg_brightness = np.mean(gray_image)

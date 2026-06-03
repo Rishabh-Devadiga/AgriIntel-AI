@@ -24,7 +24,6 @@ import pandas as pd
 import numpy as np
 import joblib
 import os
-import cv2
 from pathlib import Path
 from PIL import Image
 import io
@@ -35,7 +34,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 # Import custom modules from src/modules
-from modules.llm_agent import generate_advice, is_ollama_available, generate_seed_advice, generate_field_insights, warm_up_model, MODEL_NAME
+from modules.llm_agent import generate_advice, generate_seed_advice, generate_field_insights, is_agriculture_expert_available, get_model_id
 from modules.seed_agent import get_seed_recommendations, SUPPORTED_REGIONS
 from modules.field_intelligence import (
     analyze_vegetation_coverage,
@@ -73,20 +72,6 @@ st.markdown("""
 # ============================================================
 # Session State & Model Warm-up for Performance
 # ============================================================
-
-# Initialize session state for warm-up tracking
-if "model_warmed_up" not in st.session_state:
-    st.session_state.model_warmed_up = False
-
-# Warm up the LLM model on first app load (prevents slow first response)
-if not st.session_state.model_warmed_up and is_ollama_available():
-    try:
-        with st.spinner("🔄 Loading AI model..."):
-            if warm_up_model():
-                st.session_state.model_warmed_up = True
-    except:
-        pass  # Warm-up failed, but app continues
-
 
 # ============================================================
 # Model Loading Functions (Cached)
@@ -405,52 +390,52 @@ def show_crop_recommendation_page():
             # LLM Integration
             st.subheader("🤖 AI Farming Advice")
             
-            if not is_ollama_available():
-                st.warning("⚠️ LLM Service Not Available. Install Ollama to enable AI advice.")
-            else:
-                tab1, tab2 = st.tabs(["📋 Crop & Field Advice", "🌱 Seed Cultivation Tips"])
-                
-                with tab1:
-                    with st.spinner("🔄 Generating AI farming advice..."):
-                        advice = generate_advice(
+            if not is_agriculture_expert_available():
+                st.warning("⚠️ AgriLLM is not configured. Set HF_TOKEN to enable model-generated advice; fallback guidance will still appear.")
+
+            tab1, tab2 = st.tabs(["📋 Crop & Field Advice", "🌱 Seed Cultivation Tips"])
+
+            with tab1:
+                with st.spinner("🔄 Generating AI farming advice..."):
+                    advice = generate_advice(
+                        crop=predicted_crop,
+                        nitrogen=nitrogen,
+                        phosphorus=phosphorus,
+                        potassium=potassium,
+                        temperature=temperature,
+                        humidity=humidity,
+                        ph=ph,
+                        rainfall=rainfall,
+                        season=season,
+                        seed_varieties=seed_recommendations if seed_recommendations else None
+                    )
+
+                if advice:
+                    st.success("✅ AI Advice Generated!")
+                    st.markdown(advice)
+                else:
+                    st.error("❌ Failed to generate advice.")
+
+            with tab2:
+                if seed_recommendations and len(seed_recommendations) > 0:
+                    with st.spinner("🔄 Generating seed cultivation advice..."):
+                        seed_advice = generate_seed_advice(
                             crop=predicted_crop,
+                            seed_varieties=seed_recommendations,
+                            region=location,
+                            season=season,
                             nitrogen=nitrogen,
                             phosphorus=phosphorus,
-                            potassium=potassium,
-                            temperature=temperature,
-                            humidity=humidity,
-                            ph=ph,
-                            rainfall=rainfall,
-                            season=season,
-                            seed_varieties=seed_recommendations if seed_recommendations else None
+                            potassium=potassium
                         )
-                    
-                    if advice:
-                        st.success("✅ AI Advice Generated!")
-                        st.markdown(advice)
+
+                    if seed_advice:
+                        st.success("✅ Seed Cultivation Advice!")
+                        st.markdown(seed_advice)
                     else:
-                        st.error("❌ Failed to generate advice.")
-                
-                with tab2:
-                    if seed_recommendations and len(seed_recommendations) > 0:
-                        with st.spinner("🔄 Generating seed cultivation advice..."):
-                            seed_advice = generate_seed_advice(
-                                crop=predicted_crop,
-                                seed_varieties=seed_recommendations,
-                                region=location,
-                                season=season,
-                                nitrogen=nitrogen,
-                                phosphorus=phosphorus,
-                                potassium=potassium
-                            )
-                        
-                        if seed_advice:
-                            st.success("✅ Seed Cultivation Advice!")
-                            st.markdown(seed_advice)
-                        else:
-                            st.info("ℹ️ Specialized seed advice unavailable.")
-                    else:
-                        st.info("ℹ️ Seed cultivation advice will appear once varieties are identified.")
+                        st.info("ℹ️ Specialized seed advice unavailable.")
+                else:
+                    st.info("ℹ️ Seed cultivation advice will appear once varieties are identified.")
 
 
 # ============================================================
@@ -532,7 +517,7 @@ def show_field_intelligence_page():
             st.metric("Soil Moisture", f"{int(moisture_score)}%", moisture_level)
         
         with col3:
-            st.metric("Field Health Score", f"{health_score}/10", health_label)
+            st.metric("Field Health Score", f"{health_score:.1f}/10", health_label)
         
         st.divider()
         
@@ -555,7 +540,7 @@ def show_field_intelligence_page():
                 vegetation_level,
                 f"{int(moisture_score)}%",
                 moisture_level,
-                f"{health_score}/10",
+                f"{health_score:.1f}/10",
                 health_label
             ]
         }
@@ -720,8 +705,8 @@ def main():
 
         st.markdown("---")
 
-        # LLM Status check (for debug info)
-        ollama_status = is_ollama_available()
+        # AgriLLM Status check (for debug info)
+        agri_llm_status = is_agriculture_expert_available()
 
         # Dark mode toggle
         if "dark_mode" not in st.session_state:
@@ -736,9 +721,9 @@ def main():
 
         # Developer tools
         with st.expander("🔧 Debug Info"):
-            st.write(f"LLM Available: {ollama_status}")
-            st.write(f"Model: {MODEL_NAME}")
-            if st.button("🔄 Refresh LLM Status"):
+            st.write(f"AgriLLM Available: {agri_llm_status}")
+            st.write(f"Model: {get_model_id()}")
+            if st.button("🔄 Refresh Model Status"):
                 st.rerun()
 
         st.markdown("---")

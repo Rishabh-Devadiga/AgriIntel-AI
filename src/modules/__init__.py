@@ -4,16 +4,6 @@ AgriIntel-AI Modules Package
 Core intelligent agent modules for crop recommendation, seed intelligence, and field analysis.
 """
 
-from .llm_agent import (
-    generate_advice,
-    generate_seed_advice,
-    generate_field_insights,
-    is_ollama_available,
-    warm_up_model,
-    OLLAMA_API_URL,
-    MODEL_NAME
-)
-
 from .seed_agent import (
     get_seed_recommendations,
     get_all_crops,
@@ -30,14 +20,6 @@ from .field_intelligence import (
 )
 
 __all__ = [
-    # LLM Agent
-    'generate_advice',
-    'generate_seed_advice',
-    'generate_field_insights',
-    'is_ollama_available',
-    'warm_up_model',
-    'OLLAMA_API_URL',
-    'MODEL_NAME',
     # Seed Agent
     'get_seed_recommendations',
     'get_all_crops',

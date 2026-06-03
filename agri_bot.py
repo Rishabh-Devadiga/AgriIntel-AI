@@ -149,6 +149,15 @@ def ask_agriculture_expert(prompt: str) -> str:
     except Exception as e:
         return _format_agri_llm_error(e)
 
+
+def is_agriculture_expert_available() -> bool:
+    """Check whether AgriLLM can be used with the current token configuration."""
+    try:
+        _get_hf_token()
+        return True
+    except Exception:
+        return False
+
 # Example Usage
 if __name__ == "__main__":
     user_query = "What is the recommended crop rotation plan for corn fields experiencing high nitrogen depletion?"

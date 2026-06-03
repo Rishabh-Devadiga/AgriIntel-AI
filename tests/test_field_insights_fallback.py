@@ -1,9 +1,14 @@
 """
-Quick verification that field insights function works with fallback
+Quick verification that field insights function works with fallback.
 """
-from llm_agent import generate_field_insights
+import sys
+from pathlib import Path
 
-# Test the fallback (no Ollama needed)
+sys.path.insert(0, str(Path.cwd() / "src"))
+
+from modules.llm_agent import generate_field_insights
+
+# Test the fallback (no AgriLLM token needed)
 print("Testing generate_field_insights with fallback mode...\n")
 
 insights = generate_field_insights(
@@ -16,6 +21,6 @@ insights = generate_field_insights(
     health_label="Moderate"
 )
 
-print(insights)
-print("\n✅ Field insights function works!")
-print("\nThis output will appear in the app even if Ollama is offline.")
+print(insights.encode("ascii", "backslashreplace").decode("ascii"))
+print("\nField insights function works!")
+print("\nThis output will appear in the app even if AgriLLM is unavailable.")
